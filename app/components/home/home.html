@@ -1,0 +1,62 @@
+<ion-view title="Cek-Kucek" hide-back-button="true">
+	<ion-nav-title>
+		<img src="img/logowhite.png" style="height: 18px; vertical-align: middle">
+	</ion-nav-title>
+	<ion-content>
+		<ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()"></ion-refresher>
+
+		<div id="home" class="padding">
+			<div class="card">
+				<div class="list noborder">
+					<div class="item item-avatar item-text-wrap">
+						<img ng-src="{{ user.avatar }}"/>
+						<h2>{{ user.name }}</h2>
+						<p>
+							<i class="ion-location"></i>
+							{{ user.city }}, {{ user.province }}, {{ user.country }}<br>
+							<span ng-show="currentLocation">{{ currentLocation.latitude | number: 4 }}, {{ currentLocation.longitude | number: 4 }}<br>
+							accurate to {{ currentLocation.accuracy | number: 0 }} meters</span>
+						</p>
+						<p>{{ user.title }}</p>
+
+					</div>
+
+					<div class="item small" ng-if="user.stat">
+						{{ user.stat.completedOrders ? user.stat.completedOrders : 0 }} completed orders
+					</div>
+					<div class="item small">
+						Member since {{ user.created_at | dateToISO | date: 'mediumDate' }}
+					</div>
+				</div>
+			</div>
+
+			<div class="list" ng-if="laundry">
+				<div class="item item-divider">Preferred Laundry</div>
+				<div class="item item-text-wrap">
+					<h3>{{ laundry.laundry_name }}</h3>
+					<small><i class="icon ion-navigate"></i> {{ laundry.distance | number: 1 }} km</small>
+				</div>
+				<div class="item">
+					<button class="button button-balanced button-block" ui-sref="tabs.order">Order</button>
+				</div>
+			</div>
+
+			<div class="list">
+				<div class="item item-divider">Current Orders</div>
+
+				<div class="item order-item" ng-repeat="order in active_orders" ui-sref="tabs.orderDetail({ id: order.id })">
+					<span class="item-note">
+						<span class="pull-right">{{ order.amount_due | currency: 'Rp ' }}</span><br>
+
+					</span>
+					<h2>Order #{{ order.id }}</h2>
+					<small>{{ order.laundry.laundry_name }}</small><br>
+					<small>{{ order.created_at | dateToISO | date: 'fullDate' }}</small>
+				</div>
+
+				<div class="item" ng-if="!active_orders.length">No active orders.</div>
+			</div>
+		</div>
+
+	</ion-content>
+</ion-view>

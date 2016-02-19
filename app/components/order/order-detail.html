@@ -1,0 +1,51 @@
+<ion-view title="View Order">
+	<ion-content class="has-header padding">
+		<ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()"></ion-refresher>
+		<div class="list">
+			<div class="item item-divider">Order #{{ order.id }}</div>
+			<div class="item">
+				Laundry
+				<span class="item-note">{{ order.laundry.laundry_name }}</span>
+			</div>
+			<div class="item">
+				Package
+				<span class="item-note">{{ order.package.package_name }}</span>
+			</div>
+			<div class="item">
+				Expected Delivery Date
+				<span class="item-note">{{ order.delivery_date ? order.delivery_date : 'Waiting confirmation' }}</span>
+			</div>
+			<div class="item">
+				Processing by
+				<span class="item-note">{{ order.processor.name ? order.processor.name : 'Waiting confirmation' }}</span>
+			</div>
+			<div class="item">
+				Delivery by
+				<span class="item-note">{{ order.deliveryman.name ? order.deliveryman.name : 'Waiting confirmation' }}</span>
+			</div>
+			<div class="item">
+				Status
+				<span class="item-note">{{ order.status }}</span>
+			</div>
+			<div class="item">
+				Weight
+				<span class="item-note">{{ order.weight }} kg</span>
+			</div>
+			<div class="item">
+				Amount
+				<span class="item-note">{{ order.amount_due | currency: 'Rp ' }}</span>
+			</div>
+
+			<div class="item item-divider">Items</div>
+			<div class="item" ng-repeat="item in order.details">
+				{{ item.item_type.type }}
+				<span class="item-note">{{ item.qty }} pcs</span>
+			</div>
+		</div>
+
+		<div class="padding" ng-show="!isConfirming" ng-if="order.status == 'Pre-order'">
+			<div style="margin-bottom: 25px">This order has not yet processed, you may cancel it until you get confirmation.</div>
+			<button class="button button-balanced" ng-click="confirmCancel()">Cancel Order</button>
+		</div>
+	</ion-content>
+</ion-view>

@@ -1,0 +1,33 @@
+<ion-view title="View Laundry">
+	<ion-content class="padding">
+		<div loading-box>
+			<div class="card cover userinfo">
+				<div class="padding">
+					<div class="picture">
+						<h3>{{ laundry.laundry_name }}</h3>
+						<p>{{ laundry.slogan }}</p>
+					</div>
+
+					<button class="button button-balanced button-block button-small" disabled ng-if="preferredLaundry">This is your preferred Laundry</button>
+					<button class="button button-balanced button-block" ng-click="setPreferredLaundry()" ng-if="!preferredLaundry">Select This Laundry</button>
+				</div>
+			</div>
+
+			<div class="list">
+				<div class="item item-divider">Details</div>
+				<ion-item class="item-icon-left item-text-wrap">
+					<i class="icon ion-location"></i>
+					{{ laundry.address }}, {{ laundry.city }}, {{ laundry.province }}, {{ laundry.country }}
+				</ion-item>
+				<ion-item class="item-icon-left">
+					<i class="icon ion-android-call"></i>
+					{{ laundry.phone }}
+				</ion-item>
+				<ion-item class="item-icon-left">
+					<i class="icon ion-email"></i>
+					{{ laundry.email }}
+				</ion-item>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

@@ -1,0 +1,69 @@
+<ion-view title="Order">
+	<ion-content padding="true" class="has-header">
+		<form class="list" name="orderForm">
+			<label class="item" ng-class="{'item-button-right': !laundry }">
+				Laundry
+				<button class="button button-balanced" ui-sref="tabs.laundries" ng-if="!laundry">Select Laundry</button>
+				<span class="item-note" ng-if="laundry">
+					{{ laundry.laundry_name }}
+				</span>
+			</label>
+
+			<label class="item item-select">
+				<span class="input-label">Type</span>
+				<select required ng-model="order.type">
+					<option value="weight">Per weight</option>
+					<option value="piece">Per item</option>
+				</select>
+			</label>
+
+			<label class="item item-select item-icon-left">
+				<i class="icon ion-leaf"></i>
+				<span class="input-label">Package</span>
+				<select required placeholder="Select Package" ng-model="order.package" ng-options="package as package.package_name for package in packages track by package.id"></select>
+			</label>
+
+			<div class="item item-text-wrap nobortop text-right" ng-if="order.package">
+				{{ order.package.package_name }} ({{ order.package.price | currency: 'Rp ' }}/kg, {{ order.package.processing_time }} hours)
+			</div>
+
+			<label class="item item-select item-icon-left">
+				<i class="icon ion-location"></i>
+				<span class="input-label">Delivery To</span>
+				<select required ng-model="order.delivery_to">
+					<option value="home">Home</option>
+					<option value="current">Current Location</option>
+					<option value="custom">Custom Address...</option>
+				</select>
+			</label>
+
+			<div class="item item-text-wrap nobortop text-right" ng-if="order.delivery_to == 'home'">
+				{{ user.address }}
+			</div>
+
+			<div class="item item-text-wrap nobortop text-right" ng-if="order.delivery_to == 'current' && delivery_address">
+				{{ delivery_address.latitude | number: 4 }}, {{ delivery_address.longitude | number: 4 }}, accurate to {{ delivery_address.accuracy | number: 0 }} meters
+			</div>
+
+			<div class="item item-text-wrap item-avatar nobortop" ng-if="order.delivery_to == 'current' && !delivery_address">
+				<img src="img/ripple.svg"/>
+				Getting current location...<br>
+				<button class="button button-stable button-small" ng-click="refreshLocation()">Refresh</button>
+			</div>
+
+			<div class="item nobortop" ng-if="order.delivery_to == 'custom'">
+				<textarea ng-model="order.custom_address" placeholder="Enter Custom Address..." style="min-height: 200px; width: 100%"></textarea>
+			</div>
+
+		</form>
+		<div ng-if="ordering" class="text-center">
+			<img src="img/ripple.svg" style="height: 50px; width: 50px"/>
+		</div>
+		<div class="button-group text-center" ng-if="!ordering">
+			<button class="button button-balanced button-block" ng-click="submitOrder()" ng-disabled="!orderForm.$valid">
+				<i class="icon ion-checkmark-round"></i>
+				Submit Order
+			</button>
+		</div>
+	</ion-content>
+</ion-view>
