@@ -7,9 +7,10 @@ if (localStorage.getItem('debug') == 'true') {
 
 var ak = 'AIzaSyC_PDvtxfbGbkvfRfjLTqrcbNYFLoH2SqA';
 
-angular.module('app', ['ionic', 'app.auth', 'app.controllers', 'app.routes', 'app.services', 'app.directives', 'satellizer', 'ngCordova', 'templates'])
+angular.module('app', ['ionic', 'app.auth', 'app.controllers', 'app.routes', 'app.services', 'app.directives', 'satellizer', 'ngCordova', 'templates', 'pascalprecht.translate'])
 
-.run(function($ionicPlatform, $ionicHistory, $ionicPopup, $auth, $state, $rootScope, $location, $api) {
+.run(function($ionicPlatform, $ionicHistory, $ionicPopup, $auth, $state, $rootScope, $location, $api, $http) {
+	window.h = $http;
 	$ionicPlatform.ready(function() {
 		if (window.cordova && window.cordova.plugins.Keyboard) {
 			cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -23,6 +24,7 @@ angular.module('app', ['ionic', 'app.auth', 'app.controllers', 'app.routes', 'ap
 		}
 		else {
 			$api.registerPush();
+			$api.ensurePosition();
 		}
 
 		$rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {

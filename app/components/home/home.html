@@ -25,13 +25,13 @@
 						{{ user.stat.completedOrders ? user.stat.completedOrders : 0 }} completed orders
 					</div>
 					<div class="item small">
-						Member since {{ user.created_at | dateToISO | date: 'mediumDate' }}
+						{{ 'member_since' | translate }} {{ user.created_at | dateToISO | date: 'mediumDate' }}
 					</div>
 				</div>
 			</div>
 
 			<div class="list" ng-if="laundry">
-				<div class="item item-divider">Preferred Laundry</div>
+				<div class="item item-divider">{{'preferred_laundry' | translate}}</div>
 				<div class="item item-text-wrap">
 					<h3>{{ laundry.laundry_name }}</h3>
 					<small><i class="icon ion-navigate"></i> {{ laundry.distance | number: 1 }} km</small>
@@ -42,7 +42,7 @@
 			</div>
 
 			<div class="list">
-				<div class="item item-divider">Current Orders</div>
+				<div class="item item-divider">{{'current_order' | translate}}</div>
 
 				<div class="item order-item" ng-repeat="order in active_orders" ui-sref="tabs.orderDetail({ id: order.id })">
 					<span class="item-note">
@@ -54,7 +54,7 @@
 					<small>{{ order.created_at | dateToISO | date: 'fullDate' }}</small>
 				</div>
 
-				<div class="item" ng-if="!active_orders.length">No active orders.</div>
+				<div class="item" ng-if="!active_orders.length">{{'no_active_orders' | translate}}</div>
 			</div>
 		</div>
 

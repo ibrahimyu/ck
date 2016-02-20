@@ -27,12 +27,15 @@ angular.module('app.services')
 	}
 
 	function registerPush(userId) {
-		$cordovaPush.register({
-			'badge': 'true',
-			'sound': 'true',
-			'alert': 'true',
-			'senderID': appId,
-		}).then(function(result) {}, function(error) {});
+		if (window.plugins)
+		{
+			$cordovaPush.register({
+				'badge': 'true',
+				'sound': 'true',
+				'alert': 'true',
+				'senderID': appId,
+			}).then(function(result) {}, function(error) {});
+		}
 	}
 
 	function getPosition(progress) {
@@ -56,14 +59,22 @@ angular.module('app.services')
 				if (progress) progress(position);
 			}
 		);
+
+		return defer.promise;
 	}
 
-	// silently watch user's position
 	function ensurePosition() {
 		makeRequest('get', '/me').then(function(user) {
-			if (!user.lat)
+			if (!user.accuracy)
 			{
 				getPosition(function(position) {
+					makeRequest('post', '/customer/update-location', {
+						lat: position.coords.latitude,
+						lng: position.coords.longitude,
+						accuracy: position.coords.accuracy
+					});
+				})
+				.then(function(position) {
 					makeRequest('post', '/customer/update-location', {
 						lat: position.coords.latitude,
 						lng: position.coords.longitude,

@@ -1,18 +1,5 @@
 angular.module('app.controllers')
 
-.controller('orderListCtrl', function($scope, $api) {
-	$scope.doRefresh = function() {
-		$api.get('/customer/order')
-			.then(function(data) {
-				$scope.orders = data;
-			}).finally(function() {
-				$scope.$broadcast('scroll.refreshComplete');
-			});
-	};
-
-	$scope.doRefresh();
-})
-
 .controller('orderCtrl', function($scope, $api, $state) {
 
 	$api.get('/customer/order-form')
@@ -30,7 +17,12 @@ angular.module('app.controllers')
 		});
 
 	$scope.refreshLocation = function() {
-		// getUserPosition
+		$api.getPosition(function(position) {
+			$scope.delivery_address = position.coords;
+		})
+		.then(function() {
+			$scope.delivery_address = position.coords;
+		});
 	};
 
 	$scope.refreshLocation();
@@ -45,40 +37,5 @@ angular.module('app.controllers')
 			.finally(function() {
 				$scope.ordering = false;
 			});
-	};
-})
-
-.controller('viewOrderCtrl', function($scope, $api, $ionicHistory, $stateParams, $ionicPopup) {
-	var order_id = $stateParams.id;
-
-	$scope.doRefresh = function() {
-		$api.get('/customer/order/' + order_id)
-			.then(function(data) {
-				$scope.order = data;
-			})
-			.finally(function() {
-				$scope.$broadcast('scroll.refreshComplete');
-			});
-	};
-
-	$scope.doRefresh();
-
-	$scope.confirmCancel = function(isConfirming) {
-		$ionicPopup.confirm({
-			title: 'Confirm',
-			template: 'Are you sure you want to cancel this order?'
-		}).then(function(res) {
-			if (res) {
-				$api.post('/customer/cancel-order/' + $scope.order.id)
-					.then(function(data) {
-						$ionicPopup.alert({
-							title: 'Success',
-							template: 'Your order has been cancelled.'
-						}).then(function() {
-							$ionicHistory.goBack();
-						});
-					});
-			}
-		});
 	};
 });

@@ -1,14 +1,15 @@
 <ion-view title="More">
     <ion-content overflow-scroll="true" padding="true" class="has-header">
         <ion-list>
-            <ion-item class="item-divider">Account</ion-item>
-            <ion-item class="item-icon-left" href="#" ui-sref="tabs.profile"><i class="icon ion-person"></i>Profile</ion-item>
-            <ion-item class="item-icon-left" href="#" ui-sref="tabs.account"><i class="icon ion-wrench"></i>Change Password</ion-item>
-            <ion-item class="item-icon-left" ng-click="logout()"><i class="icon ion-log-out"></i>Logout</ion-item>
+            <ion-item class="item-divider">{{ 'account' | translate }}</ion-item>
+            <ion-item class="item-icon-left" href="#" ui-sref="tabs.profile"><i class="icon ion-person"></i>{{ 'profile' | translate }}</ion-item>
+            <ion-item class="item-icon-left" href="#" ui-sref="tabs.account"><i class="icon ion-wrench"></i>{{ 'change_password' | translate }}</ion-item>
+            <ion-item class="item-icon-left" ng-click="setLanguage()"><i class="icon ion-earth"></i>{{ 'language' | translate }}</ion-item>
+            <ion-item class="item-icon-left" ng-click="logout()"><i class="icon ion-log-out"></i>{{ 'logout' | translate }}</ion-item>
 
-            <ion-item class="item-divider">Support</ion-item>
-            <ion-item class="item-icon-left" href="#" ui-sref="tabs.about"><i class="icon ion-information-circled"></i>About Cekucek</ion-item>
-            <ion-item class="item-icon-left" href="#" ui-sref="tabs.contact"><i class="icon ion-email"></i>Contact Us</ion-item>
+            <ion-item class="item-divider">{{ 'support' | translate }}</ion-item>
+            <ion-item class="item-icon-left" href="#" ui-sref="tabs.about"><i class="icon ion-information-circled"></i>{{ 'about_cekkucek' | translate }}</ion-item>
+            <ion-item class="item-icon-left" href="#" ui-sref="tabs.contact"><i class="icon ion-email"></i>{{ 'contact_us' | translate }}</ion-item>
         </ion-list>
     </ion-content>
 </ion-view>
