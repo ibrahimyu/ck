@@ -1,5 +1,6 @@
 var ap = 'http://simful.com:1600';
 var appId = '574964286293';
+var map;
 
 if (localStorage.getItem('debug') == 'true') {
 	ap = 'http://localhost:8000';
@@ -59,6 +60,10 @@ angular.module('app', ['ionic', 'app.auth', 'app.controllers', 'app.routes', 'ap
 				$ionicHistory.goBack();
 			}
 		}, 100);
+
+		if (window.plugin) {
+            map = window.plugin.google.maps.Map;//.getMap(div);
+        }
 	});
 });
 

@@ -11,7 +11,10 @@ angular.module('app.controllers')
 		$scope.loading = true;
 		$auth.signup($scope.user)
 			.then(function(response) {
-				$auth.login(user)
+				$auth.login({
+						email: $scope.user.email,
+						password: $scope.user.password
+					})
 					.then(function(response) {
 						$api.registerPush();
 						$state.go('tabs.home');
