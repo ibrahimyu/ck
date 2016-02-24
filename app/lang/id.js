@@ -45,6 +45,7 @@ angular.module('app')
 		"existing_customer": "Pelanggan lama",
 		"expected_delivery_date": "Perkiraan Selesai",
 		"getting_current_location": "Sedang mengambil informasi lokasi",
+		"history": "Data",
 		"home": "Rumah",
 		"homepage": "Beranda",
 		"income": "Pendapatan",

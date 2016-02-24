@@ -43,8 +43,8 @@ angular.module('app.controllers')
 					template: 'This laundry has been set as your preferred laundry.'
 				}).then(function() {
 					$scope.preferredLaundry = true;
-					$state.go('tabs.order');
-				})
+					$state.go('tabs.home');
+				});
 			});
 	};
 

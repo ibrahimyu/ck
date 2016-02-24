@@ -32,12 +32,13 @@
 
 			<div class="list" ng-if="laundry">
 				<div class="item item-divider">{{'preferred_laundry' | translate}}</div>
-				<div class="item item-text-wrap">
+				<div class="item item-text-wrap" ui-sref="tabs.viewLaundry({ id: laundry.id })">
 					<h3>{{ laundry.laundry_name }}</h3>
 					<small><i class="icon ion-navigate"></i> {{ laundry.distance | number: 1 }} km</small>
 				</div>
 				<div class="item">
 					<button class="button button-balanced button-block" ui-sref="tabs.order">Order</button>
+					<button class="button button-stable button-block" ui-sref="tabs.laundries">Select Laundry</button>
 				</div>
 			</div>
 

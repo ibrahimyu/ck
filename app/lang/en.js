@@ -45,6 +45,7 @@ angular.module('app')
 		"existing_customer": "Existing Customer",
 		"expected_delivery_date": "Expected Delivery Date",
 		"getting_current_location": "Getting current location",
+		"history": "History",
 		"home": "Home",
 		"homepage": "Home",
 		"income": "Income",
