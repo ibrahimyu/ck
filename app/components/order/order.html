@@ -1,7 +1,7 @@
 <ion-view title="{{ 'order' | translate }}">
 	<ion-content padding="true" class="has-header">
 		<form class="list" name="orderForm">
-			<label class="item" ng-class="{'item-button-right': !laundry }">
+			<label class="item" ng-class="{'item-button-right': !laundry }" ui-sref="tabs.laundries">
 				{{ 'laundry' | translate }}
 				<button class="button button-balanced" ui-sref="tabs.laundries" ng-if="!laundry">{{ 'select_laundry' | translate }}</button>
 				<span class="item-note" ng-if="laundry">
@@ -17,14 +17,17 @@
 				</select>
 			</label>
 
-			<label class="item item-select item-icon-left">
+			<label class="item item-select item-icon-left" ng-if="order.type == 'weight'">
 				<i class="icon ion-leaf"></i>
 				<span class="input-label">{{ 'package' | translate }}</span>
 				<select required placeholder="Select Package" ng-model="order.package" ng-options="package as package.package_name for package in packages track by package.id"></select>
 			</label>
 
 			<div class="item item-text-wrap nobortop text-right" ng-if="order.package">
-				{{ order.package.package_name }} ({{ order.package.price | currency: 'Rp ' }}/kg, {{ order.package.processing_time }} hours)
+				{{ order.package.package_name }}
+				({{ order.package.price | currency: 'Rp ' }}/kg,
+				{{ order.package.processing_time }}
+				hours)
 			</div>
 
 			<label class="item item-select item-icon-left">
@@ -42,7 +45,11 @@
 			</div>
 
 			<div class="item item-text-wrap nobortop text-right" ng-if="order.delivery_to == 'current' && delivery_address">
-				{{ delivery_address.latitude | number: 4 }}, {{ delivery_address.longitude | number: 4 }}, {{ 'accurate_to' | translate }} {{ delivery_address.accuracy | number: 0 }} meters
+				{{ delivery_address.latitude | number: 4 }},
+				{{ delivery_address.longitude | number: 4 }},
+				{{ 'accurate_to' | translate }}
+				{{ delivery_address.accuracy | number: 0 }}
+				meters
 			</div>
 
 			<div class="item item-text-wrap item-avatar nobortop" ng-if="order.delivery_to == 'current' && !delivery_address">

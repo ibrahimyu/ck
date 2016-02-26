@@ -5,12 +5,12 @@
 
 			<label class="item item-input item-floating-label">
 				<span class="input-label">{{ 'new_password' | translate }}</span>
-				<input type="password" class="item" ng-model="newpassword" placeholder="New Password" required/>
+				<input type="password" class="item" ng-model="user.password" placeholder="New Password" required/>
 			</label>
 
 			<label class="item item-input item-floating-label">
 				<span class="input-label">{{'retype_new_password' | translate}}</span>
-				<input type="password" class="item" ng-model="verifypassword" placeholder="Retype New Password" required/>
+				<input type="password" class="item" ng-model="user.verify_password" placeholder="Retype New Password" required/>
 			</label>
 		</form>
 

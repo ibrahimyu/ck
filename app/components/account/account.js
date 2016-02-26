@@ -1,13 +1,17 @@
 angular.module('app.controllers')
 
-.controller('accountCtrl', function($scope, $api) {
+.controller('accountCtrl', function($scope, $api, $ionicPopup, $state) {
+	$scope.user = {};
+
 	$scope.changePassword = function() {
-		$api.post('/changePassword', $scope.password)
+		$api.put('/auth/password', $scope.user)
 			.then(function(data) {
-				$scope.alert = {
-					message: 'Changes saved.',
-					type: 'information'
-				};
+				$ionicPopup.alert({
+					title: 'Success',
+					template: 'Your password has successfully changed.'
+				}).then(function() {
+					$state.go('tabs.more');
+				});
 			});
 	};
 });

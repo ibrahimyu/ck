@@ -2,6 +2,11 @@
 	<ion-nav-title>
 		<img src="img/logowhite.png" style="height: 18px; vertical-align: middle">
 	</ion-nav-title>
+	<ion-nav-buttons side="right">
+		<button class="button icon" ui-sref="tabs.notifications">
+			<i class="ion-ios-bell-outline"></i>
+		</button>
+	</ion-nav-buttons>
 	<ion-content>
 		<ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()"></ion-refresher>
 

@@ -3,6 +3,7 @@
 		<ion-list>
 			<ion-item ng-repeat="laundry in laundries" ui-sref="tabs.viewLaundry({ id: laundry.id })">
 				<h3>{{ laundry.laundry_name }}</h3>
+				<small><i class="icon ion-location"></i> {{ laundry.city }}, {{ laundry.province }}, {{ laundry.country }}<br>
 				<small><i class="icon ion-navigate"></i> {{ laundry.distance | number: 1 }} km</small>
 			</ion-item>
 		</ion-list>

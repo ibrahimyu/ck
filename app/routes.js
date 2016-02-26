@@ -182,6 +182,16 @@ angular.module('app.routes', [])
 				controller: 'contactCtrl'
 			}
 		}
+	})
+
+	.state('tabs.notifications', {
+		url: '/notifications',
+		views: {
+			'tab4': {
+				templateUrl: 'components/notification/notification.html',
+				controller: 'notificationsCtrl'
+			}
+		}
 	});
 
 	// if none of the above states are matched, use this as the fallback
