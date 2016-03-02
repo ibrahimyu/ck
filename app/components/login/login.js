@@ -1,10 +1,6 @@
 angular.module('app.controllers')
 
 .controller('loginCtrl', function($scope, $auth, $state, $api, $translate) {
-	if ($auth.isAuthenticated()) {
-		$state.go('tabs.home');
-	}
-
 	$scope.loadingComplete = true;
 
 	$scope.active_language = localStorage.getItem('lang') || 'en';
@@ -26,6 +22,7 @@ angular.module('app.controllers')
 
 		$auth.login(user)
 			.then(function(response) {
+				$auth.setToken(response);
 				$api.registerPush();
 				$state.go('tabs.home');
 			})
@@ -34,6 +31,13 @@ angular.module('app.controllers')
 			})
 			.finally(function() {
 				$scope.loadingComplete = true;
+			});
+	};
+
+	$scope.authenticate = function(provider) {
+		$auth.authenticate(provider)
+			.then(function(response) {
+				$state.go('tabs.home');
 			});
 	};
 });

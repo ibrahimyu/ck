@@ -23,7 +23,7 @@
 				<select required placeholder="Select Package" ng-model="order.package" ng-options="package as package.package_name for package in packages track by package.id"></select>
 			</label>
 
-			<div class="item item-text-wrap nobortop text-right" ng-if="order.package">
+			<div class="item item-text-wrap nobortop text-right" ng-if="order.package && order.type == 'weight'">
 				{{ order.package.package_name }}
 				({{ order.package.price | currency: 'Rp ' }}/kg,
 				{{ order.package.processing_time }}

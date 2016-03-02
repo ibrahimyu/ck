@@ -8,12 +8,6 @@ angular.module('app.routes', [])
 	// Each state's controller can be found in controllers.js
 	$stateProvider
 
-	.state('debug', {
-		url: '/debug',
-		controller: 'debugCtrl',
-		template: 'Debug mode activated'
-	})
-
 	.state('login', {
 		url: '/login',
 		controller: 'loginCtrl',
@@ -29,7 +23,10 @@ angular.module('app.routes', [])
 	.state('tabs', {
 		url: '/tab',
 		abstract: true,
-		templateUrl: 'components/layout/tabs.html'
+		templateUrl: 'components/layout/tabs.html',
+		data: {
+			checkAuth: true
+		}
 	})
 
 	.state('tabs.home', {
