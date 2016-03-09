@@ -18,7 +18,7 @@ angular.module('app')
 		"amount_paid": "Jumlah Dibayar",
 		"back": "Kembali",
 		"back_to_package_list": "Kembali ke Rincian Paket",
-		"cancel": "Keluar",
+		"cancel": "Batal",
 		"cancel_order": "Batalkan Pesanan",
 		"change_password": "Ubah Sandi",
 		"change_status": "Ubah Status",
@@ -70,11 +70,13 @@ angular.module('app')
 		"new_password": "Sandi Baru",
 		"new_walk_in": "New Walk-in",
 		"next": "Lanjut",
-		"no_active_orders": "Pesanan inaktif ",
+		"no_active_orders": "Tidak ada pesanan aktif.",
 		"no_new_orders": "Tidak ada pesanan baru.",
 		"no_orders": "Tidak ada pesanan.",
 		"not_processed": "Pesanan ini belum diproses dan masih dapat dibatalkan.",
+		"notifications": "Notifikasi",
 		"order": "Pesanan",
+		"order_v": "Pesan",
 		"orders": "Pesanan",
 		"package": "Paket",
 		"package_name": "Nama Paket",
@@ -119,6 +121,25 @@ angular.module('app')
 		"view_order": "Lihat Pesanan",
 		"view_profile": "Lihat Profil",
 		"waiting_delivery": "Menunggu Pengiriman",
-		"weight": "Berat"
+		"weight": "Berat",
+
+		"new": "Baru",
+		"active": "Aktif",
+		"completed": "Selesai",
+
+		"edit_order": "Edit Order",
+		"edit_items": "Edit Items",
+
+		"hours": "jam",
+		"select_language": "Pilih Bahasa",
+
+		"supports_per_weight": "Harga Kiloan",
+		"supports_per_item": "Harga Satuan",
+		"supports_delivery": "Layanan Delivery",
+		"default_currency": "Mata Uang",
+		"currency_symbol": "Simbol Mata Uang",
+		"operational_hours": "Jam Operasional",
+		"delivery_schedule": "Jam Antar/Jemput",
+		"enter_laundry_description": "Masukkan informasi lainnya disini..."
 	});
 });

@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller('NotificationsCtrl', function($scope, $localstorage) {
+.controller('notificationsCtrl', function($scope, $localstorage) {
 	$scope.notifications = [
 		{
 			'subject': 'Your order has been accepted!',
@@ -10,5 +10,5 @@ angular.module('app')
 		}
 	];
 
-	//$scope.notifications = $localstorage.getObject('notification.items');
+	$scope.notifications = $localstorage.getObject('notification.items');
 });

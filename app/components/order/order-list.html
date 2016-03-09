@@ -1,24 +1,33 @@
-<ion-view title="Orders" hide-back-button="true">
+<ion-view title="{{ 'orders' | translate }}" hide-back-button="true">
 	<ion-content class="has-header">
 		<ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()"></ion-refresher>
-		<div class="padding" loading-box>
-			<div class="list" ng-if="orders.data.length">
-				<div class="item item-divider">Orders</div>
-				<div class="item order-item" ng-repeat="order in orders.data" ui-sref="tabs.orderDetail({ id: order.id })">
-					<span class="item-note">
-						<span class="pull-right">{{ order.amount_due | currency: 'Rp ' }}</span><br>
 
-					</span>
-					<h2>Order #{{ order.id }}</h2>
-					<small>{{ order.laundry.laundry_name }}</small><br>
-					<small>{{ order.created_at | dateToISO | date: 'fullDate' }}</small>
+		<div class="button-bar">
+			<button class="button button-stable" ng-class="{ 'button-balanced': orderStatus == 'new' }" ng-click="filterOrder('new')">{{ 'new' | translate }}</button>
+			<button class="button button-stable" ng-class="{ 'button-balanced': orderStatus == 'active' }" ng-click="filterOrder('active')">{{ 'active' | translate }}</button>
+			<button class="button button-stable" ng-class="{ 'button-balanced': orderStatus == 'completed' }" ng-click="filterOrder('completed')">{{ 'completed' | translate }}</button>
+		</div>
+
+		<div loading-box>
+			<div ng-if="orders.data.length">
+				<div class="list noborder">
+					<div class="item item-divider">Orders</div>
+					<div class="item order-item" ng-repeat="order in orders.data" ui-sref="tabs.orderDetail({ id: order.id })">
+						<span class="item-note">
+							<span class="pull-right">{{ order.amount_due | currency: 'Rp ' }}</span><br>
+
+						</span>
+						<h2>Order #{{ order.id }}</h2>
+						<small>{{ order.laundry.laundry_name }}</small><br>
+						<small>{{ order.created_at | dateToISO | date: 'fullDate' }}</small>
+					</div>
+
+					<paginator source="orders"></paginator>
 				</div>
-
-				<paginator source="orders"></paginator>
 			</div>
 
-			<div class="item item-text-wrap" ng-if="!orders.data.length">
-				No orders yet. <a href="" ui-sref="tabs.order">Create a new order</a>
+			<div class="padding text-center" ng-if="!orders.data.length">
+				{{ 'no_orders' | translate }}
 			</div>
 		</div>
 	</ion-content>

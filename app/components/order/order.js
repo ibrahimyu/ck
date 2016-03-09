@@ -17,12 +17,10 @@ angular.module('app.controllers')
 		});
 
 	$scope.refreshLocation = function() {
-		$api.getPosition(function(position) {
-			$scope.delivery_address = position.coords;
-		})
-		.then(function() {
-			$scope.delivery_address = position.coords;
-		});
+		$api.getPosition()
+			.then(function() {
+				$scope.delivery_address = position.coords;
+			});
 	};
 
 	$scope.refreshLocation();

@@ -63,6 +63,9 @@ angular.module('app.routes', [])
 	.state('tabs.orderList', {
 		url: '/order-list',
 		cache: false,
+		params: {
+		    status: 'active',
+		},
 		views: {
 			'tab3': {
 				templateUrl: 'components/order/order-list.html',

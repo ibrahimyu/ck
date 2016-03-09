@@ -15,7 +15,8 @@ angular.module('app.services')
 					$localstorage.setObject(uri, response.data);
 					defer.resolve(response.data);
 				},
-				function(e) {
+				function(error) {
+					console.log(error);
 					var data = $localstorage.getObject(uri);
 					defer.resolve(data);
 				})
@@ -27,12 +28,13 @@ angular.module('app.services')
 	}
 
 	function registerPush(userId) {
-		$cordovaPush.register({
-			'badge': 'true',
-			'sound': 'true',
-			'alert': 'true',
-			'senderID': appId,
-		}).then(function(result) {}, function(error) {});
+		if (window.plugins)
+			$cordovaPush.register({
+				'badge': 'true',
+				'sound': 'true',
+				'alert': 'true',
+				'senderID': appId,
+			}).then(function(result) {}, function(error) {});
 	}
 
 	function updateUserLocation(position) {

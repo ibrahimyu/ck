@@ -70,11 +70,13 @@ angular.module('app')
 		"new_password": "New Password",
 		"new_walk_in": "New Walk-in",
 		"next": "Next",
-		"no_active_orders": "No Active Order",
+		"no_active_orders": "No active orders.",
 		"no_new_orders": "No new orders.",
 		"no_orders": "No orders.",
 		"not_processed": "This order has not yet processed, you may cancel it until you get confirmation.",
+		"notifications": "Notifications",
 		"order": "Order",
+		"order_v": "Order",
 		"orders": "Orders",
 		"package": "Package",
 		"package_name": "Package Name",
@@ -119,6 +121,25 @@ angular.module('app')
 		"view_order": "View Order",
 		"view_profile": "View Profile",
 		"waiting_delivery": "Waiting Delivery",
-		"weight": "Weight"
+		"weight": "Weight",
+
+		"new": "New",
+		"active": "Active",
+		"completed": "Completed",
+
+		"edit_order": "Edit Order",
+		"edit_items": "Edit Items",
+
+		"hours": "hours",
+		"select_language": "Select Language",
+
+		"supports_per_weight": "Per-weight Pricing",
+		"supports_per_item": "Per-item Pricing",
+		"supports_delivery": "Supports Delivery",
+		"default_currency": "Default Currency",
+		"currency_symbol": "Currency Symbol",
+		"operational_hours": "Operational Hours",
+		"delivery_schedule": "Delivery Schedule",
+		"enter_laundry_description": "Enter laundry description..."
 	});
 });
